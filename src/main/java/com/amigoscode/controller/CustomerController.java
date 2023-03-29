@@ -2,9 +2,7 @@ package com.amigoscode.controller;
 
 
 import com.amigoscode.model.Customer;
-import com.amigoscode.repository.CustomerRepository;
 import com.amigoscode.service.CustomerService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,10 +12,10 @@ import java.util.List;
 public class CustomerController {
 
 
-    CustomerService customerService;
+    private CustomerService customerService;
 
-    public CustomerController(CustomerRepository customerRepository){
-        this.customerService = new CustomerService(customerRepository);
+    public CustomerController(final CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @GetMapping
