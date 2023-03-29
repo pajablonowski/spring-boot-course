@@ -10,6 +10,6 @@ public class Controller {
 
     @GetMapping("/greetings")
     public List<String> greetings() {
-        return List.of("Hi","Hello");
+        return List.of("Hi","Hello","Buongiorno");
     }
 }
