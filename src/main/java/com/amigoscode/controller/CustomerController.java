@@ -47,12 +47,13 @@ public class CustomerController {
             @PathVariable("customerId") Long id,
             @RequestBody NewCustomerRequest request) {
         Optional<Customer> customerById = customerService.getCustomerById(id);
-        if (customerById.isPresent()) {
-            Customer customer = customerById.get();
-            customer.setName(request.name());
-            customer.setEmail(request.email());
-            customer.setAge(request.age());
-            customerService.saveOrUpdate(customer);
-        } else throw new IllegalArgumentException("Customer with given id doesn't exist");
+        if (customerById.isEmpty()) {
+            throw new IllegalArgumentException("Customer with given id doesn't exist");
+        }
+        Customer customer = customerById.get();
+        customer.setName(request.name());
+        customer.setEmail(request.email());
+        customer.setAge(request.age());
+        customerService.saveOrUpdate(customer);
     }
 }
